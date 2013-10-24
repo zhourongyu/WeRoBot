@@ -14,7 +14,7 @@ def subscribe(message):
 @robot.text
 def doText(message):
 	msg = message.content.lower()
-	if(re.sub('：',':',msg[0:3])  == "sn:"):
+	if(re.sub('\xa3\xba',':',msg[0:3])  == "sn:"):
 		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
