@@ -18,7 +18,7 @@ def doText(message):
 		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
-		params = {'sn': meid, 'key': '05D0437977124766B7AF884C0EF3BA6E'}
+		params = {'sn': sn, 'key': '05D0437977124766B7AF884C0EF3BA6E'}
 		#可以加入请求头信息，以便识别 
 		i_headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0", 
 		         "Content-type":"application/x-www-form-urlencoded","Accept": "text/plain"} 
