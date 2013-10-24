@@ -13,8 +13,9 @@ def subscribe(message):
 
 @robot.text
 def doText(message):
-	if(message[0:3] == "sn:"):
-		sn = message[3:]
+	msg = message.content
+	if(msg[0:3] == "sn:"):
+		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
 		params = {'sn': meid, 'key': '05D0437977124766B7AF884C0EF3BA6E'}
