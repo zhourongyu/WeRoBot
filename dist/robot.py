@@ -5,7 +5,7 @@ robot = werobot.WeRoBot(token='zhourongyu')
 
 @robot.location
 def handler(message):
-    return "I don't care~"
+    return "管你在哪呢！"
 
 @robot.subscribe
 def subscribe(message):
@@ -14,8 +14,9 @@ def subscribe(message):
 @robot.text
 def doText(message):
 	msg = message.content.lower()
+	userName = message.FromUserName
 	print msg
-	if msg[0:3] == "sn-" :
+	if msg[0:3] == "sn@" :
 		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
@@ -49,7 +50,11 @@ def doText(message):
 		ddata = simplejson.loads(dump_str)
 		activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
 		info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
-		print info
+
+		userInfo = userName+"----"+sn+"----"+info
+		f = open('info.log', 'w') # open for 'w'riting
+		f.write(userInfo) # write text to file
+		f.close() # close the file
 		return info
 	else:
 		return '格式不对哟~ 正确格式(sn:xxxxx)'
