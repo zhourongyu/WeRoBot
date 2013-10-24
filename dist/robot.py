@@ -14,6 +14,7 @@ def subscribe(message):
 @robot.text
 def doText(message):
 	msg = message.content.lower()
+	print msg
 	if(re.sub('\xa3\xba',':',msg[0:3])  == "sn:"):
 		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
@@ -51,5 +52,5 @@ def doText(message):
 		print info
 		return info
 	else:
-		return '格式不对哟~ 正确格式"sn:xxxxx"'
+		return '格式不对哟~ 正确格式(sn:xxxxx)'
 robot.run()
