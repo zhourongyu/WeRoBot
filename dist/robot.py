@@ -15,7 +15,7 @@ def subscribe(message):
 def doText(message):
 	msg = message.content.lower()
 	print msg
-	if(re.sub('-',':',msg[0:3])  == "sn:"):
+	if msg == "sn-" :
 		sn = msg[3:]
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
@@ -48,7 +48,7 @@ def doText(message):
 		dump_str = simplejson.dumps(res, ensure_ascii=False, encoding='utf-8')
 		ddata = simplejson.loads(dump_str)
 		activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
-		info = ddata['data']['exName']+","+ddata['data']['modelNumber']+","+activated+","+ddata['data']['creatData']
+		info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
 		print info
 		return info
 	else:
