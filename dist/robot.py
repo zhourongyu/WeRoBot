@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import werobot, urllib2, urllib, simplejson, socket,cookielib
+import werobot, urllib2, urllib, simplejson, socket, cookielib, re
 
 robot = werobot.WeRoBot(token='zhourongyu')
 
