@@ -14,7 +14,6 @@ def subscribe(message):
 @robot.text
 def doText(message):
 	msg = message.content.lower()
-	userName = message.FromUserName
 	print msg
 	if msg[0:3] == "sn@" :
 		sn = msg[3:]
@@ -51,7 +50,7 @@ def doText(message):
 		activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
 		info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
 
-		userInfo = userName+"----"+sn+"----"+info
+		userInfo = sn+"----"+info
 		f = open('info.log', 'w') # open for 'w'riting
 		f.write(userInfo) # write text to file
 		f.close() # close the file
