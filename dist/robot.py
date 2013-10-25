@@ -50,9 +50,9 @@ def doText(message):
 		activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
 		info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
 
-		userInfo = sn+"----"+info
-		f = open('info.log', 'w') # open for 'w'riting
-		f.write(userInfo) # write text to file
+		userInfo = sn+"@@@@"+info+"@@@@"
+		f = open('info.log', 'w+') # open for 'w'riting
+		f.write(userInfo.encode('utf-8').strip()) # write text to file
 		f.close() # close the file
 		return info
 	else:
