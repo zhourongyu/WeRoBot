@@ -16,7 +16,7 @@ def doText(message):
 	msg = message.content.lower()
 	print msg
 	if msg[0:3] == "sn@" :
-		sn = msg[3:]
+		sn = "".join(msg[3:].split())
 		url = "http://sn.appvv.com/tools/newSn.htm"
 		#可以加入参数  [无参数，使用get，以下这种方式，使用post] 
 		params = {'sn': sn, 'key': '05D0437977124766B7AF884C0EF3BA6E'}
@@ -47,14 +47,17 @@ def doText(message):
 		res = simplejson.loads(html)
 		dump_str = simplejson.dumps(res, ensure_ascii=False, encoding='utf-8')
 		ddata = simplejson.loads(dump_str)
-		activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
-		info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
+		if(ddata['error'] == '0'):
+			activated = re.sub(r'</?\w+[^>]*>','',ddata['data']['Activated'])
+			info = ddata['data']['exName']+";"+ddata['data']['modelNumber']+";"+activated+";"+ddata['data']['creatData']
 
-		userInfo = sn+"@@@@"+info+"@@@@"
-		f = open('info.log', 'w+') # open for 'w'riting
-		f.write(userInfo.encode('utf-8').strip()) # write text to file
-		f.close() # close the file
-		return info
+			userInfo = sn+"@@@@"+info+"@@@@"
+			f = open('info.log', 'w+') # open for 'w'riting
+			f.write(userInfo.encode('utf-8').strip()) # write text to file
+			f.close() # close the file
+			return info
+		else:
+			return re.sub(r'</?\w+[^>]*>','',ddata['msg'])
 	else:
 		return '格式不对哟~ 正确格式(sn:xxxxx)'
 robot.run()
